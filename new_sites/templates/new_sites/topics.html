@@ -19,6 +19,7 @@
       <a class="list-group-item list-group-item-action rounded-right rounded-left rounded-bottom rounded-top"
          href="{% url 'new_sites:topic' topic.id %}">
           {{ topic }}
+          {{ entry.text|safe }}
       </a>
   {% empty %}
     <li>No topics have been added yet.</li>

@@ -15,6 +15,15 @@ urlpatterns = [
     # Show all about site.
     path('about/', views.about, name='about'),
 
+    # Show all articles.
+    path('articles/', views.articles, name='articles'),
+
+    # Detail page for a single article.
+    path('articles/<int:article_id>/', views.article, name='article'),
+
+    # Detail page for a single comment.
+    path('article/<int:article_id>/comment/', views.add_comment, name='add_comment'),
+
     # Show all topics.
     path('topics/', views.topics, name='topics'),
 

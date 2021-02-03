@@ -15,4 +15,7 @@ urlpatterns = [
 
     # Registration page.
     path('register/', views.register, name='register'),
+
+    # Password change.
+    path('password/', auth_views.PasswordChangeView.as_view(template_name='users/password.html'), name='password'),
 ]

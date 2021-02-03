@@ -28,10 +28,10 @@
         </a>
       </div>
     <div class="card-body">
-      {{ entry.text|linebreaks }}
+      {{ entry.text|safe}}
     </div>
   </div> <!-- panel -->
-</br>
+
   {% empty %}
     There are no entries for this topic yet.
   {% endfor %}

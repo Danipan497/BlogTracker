@@ -1,0 +1,58 @@
+{% extends 'new_sites/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>{{ article }}</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+  {% for articlesentry in articlesentries %}
+
+    <div class="card">
+      <div class="card-header">
+        <h5>
+          {{ articlesentry.date_added|date:'M d, Y H:i' }}
+        </h5>
+      </div>
+    <div class="card-body">
+      {{ articlesentry.text|safe}}
+    </div>
+  </div>
+</br>
+<h3>Comments</h3>
+<hr>
+
+{% if not article.comments.all %}
+  No Comments Yet...
+<br>
+  <br>
+      <a href="{% url 'new_sites:add_comment' article.id %}" class="btn btn-secondary" role="button">
+        Add Comment
+      </a>
+{% else %}
+      <a href="{% url 'new_sites:add_comment' article.id %}" class="btn btn-secondary" role="button">
+        Add Comment
+      </a>
+        <br>
+
+  {% for comment in article.comments.all %}
+    </br>
+
+    <div class="card" >
+      <div class="card-body">
+        <strong>{{ comment.user }}</strong> -
+          {{ comment.date_added }}
+          <hr>
+          {{ comment.comment_text }}
+      </div>
+    </div>
+  {% endfor %}
+
+{% endif %}
+
+  {% empty %}
+    There are no article entries yet.
+  {% endfor %}
+
+{% endblock content %}

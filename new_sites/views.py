@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry
-from .forms import TopicForm, EntryForm
+from .models import Topic, Entry, Article, Comment
+from .forms import TopicForm, EntryForm, CommentForm
 
 
 def index(request):
@@ -115,3 +115,32 @@ def delete_entry(request, entry_id):
 def success(request):
     """Basic information about this site."""
     return render(request, 'new_sites/success.html')
+
+
+def articles(request):
+    """Basic information about this site."""
+    articles = Article.objects.order_by('date_added')
+    context = {'articles': articles}
+    return render(request, 'new_sites/articles.html', context)
+
+
+def article(request, article_id):
+    """Show a single article and all its entries."""
+    article = Article.objects.get(id=article_id)
+    articlesentries = article.articleentry_set.order_by('-date_added')
+    context = {'article': article, 'articlesentries': articlesentries}
+    return render(request, 'new_sites/article.html', context)
+
+
+def add_comment(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = article
+            comment.save()
+            return HttpResponseRedirect(reverse('new_sites:article', args=[article.id]))
+    else:
+        form = CommentForm()
+    return render(request, 'new_sites/add_comment.html', {'form': form})
