@@ -1,0 +1,27 @@
+{% extends "new_sites/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>Topics</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+    <h3>
+        {% buttons %}
+          <a href="{% url 'new_sites:new_topic' %}">
+            <button class="btn btn-secondary">New topic</button>
+          </a>
+        {% endbuttons %}
+    </h3>
+
+  {% for topic in topics %}
+      <a class="list-group-item list-group-item-action rounded-right rounded-left rounded-bottom rounded-top"
+         href="{% url 'new_sites:topic' topic.id %}">
+          {{ topic }}
+      </a>
+  {% empty %}
+    <li>No topics have been added yet.</li>
+  {% endfor %}
+
+{% endblock content %}

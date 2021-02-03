@@ -1,0 +1,4 @@
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, new_sites, sessions
+Running migrations:
+  Applying new_sites.0018_auto_20210121_1741... OK

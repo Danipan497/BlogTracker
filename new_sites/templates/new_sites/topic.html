@@ -1,0 +1,39 @@
+{% extends 'new_sites/base.html' %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <h2>{{ topic }}</h2>
+{% endblock page_header %}
+
+{% block content %}
+
+{% buttons %}
+  <a href="{% url 'new_sites:new_entry' topic.id %}">
+    <button class="btn btn-secondary">Add new entry</button>
+  </a>
+{% endbuttons %}
+
+  {% for entry in entries %}
+
+    <div class="card">
+      <div class="card-header">
+        <h5>
+          {{ entry.date_added|date:'M d, Y H:i' }}
+        </h5>
+        <a class="btn btn-large btn-secondary" type="button" href="{% url 'new_sites:edit_entry' entry.id %}">
+        Edit entry
+        </a>
+        <a class="btn btn-large btn-secondary" type="button"  href="{% url 'new_sites:delete_entry' entry.id %}">
+        Delete entry
+        </a>
+      </div>
+    <div class="card-body">
+      {{ entry.text|linebreaks }}
+    </div>
+  </div> <!-- panel -->
+</br>
+  {% empty %}
+    There are no entries for this topic yet.
+  {% endfor %}
+
+{% endblock content %}

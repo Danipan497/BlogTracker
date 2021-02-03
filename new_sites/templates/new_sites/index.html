@@ -1,0 +1,81 @@
+{% extends "new_sites/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">Track your interests.</h1>
+
+    <p class="lead">Make your own Blog tracker, and keep a list of the
+        topics you're interested about. Whenever you keep something new
+        about a topic of interests, make an entry summarizing in blog tracker.</p>
+
+    <a class="btn btn-lg btn-secondary" href="{% url 'users:register' %}"
+        role="button">Register &raquo;</a>
+  </div>
+{% endblock page_header %}
+
+{% block content %}
+
+  <h3>Changelog</h3>
+
+<div id="accordion">
+  <div class="card  mb-1">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Version 1.2 - Features
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <p class="card-text">Changed: Bootstrap3 converted to Bootstrap4.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card  mb-1">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-secondary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Version 1.1 - Features
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <p class="card-text">Added: Delete function in blog/entry management for every user.</p>
+        <p class=card-text">Changed: Edit entry now is a button, not just a href="".</p>
+      </div>
+    </div>
+  </div>
+  <div class="card  mb-1">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-secondary collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Version 1.0 - Features
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+        <p class="card-text">Added: Contact section with form for sending questions and stuff.</p>
+        <p class="card-text">Changed: New page on navbar: Contact.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Tex template for changelog.-->
+
+<!--    <p class="text-justify">Added:</p>-->
+<!--    <p class="text-justify">Changed:</p>-->
+<!--    <p class="text-justify">Deprecated:</p>-->
+<!--    <p class="text-justify">Removed:</p>-->
+<!--    <p class="text-justify">Fixed:</p>-->
+<!--    <p class="text-justify">Security:</p>-->
+
+
+
+{% endblock content %}
