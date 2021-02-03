@@ -19,7 +19,7 @@
       {{ articlesentry.text|safe}}
     </div>
   </div>
-</br>
+<br>
 <h3>Comments</h3>
 <hr>
 
@@ -37,8 +37,6 @@
         <br>
 
   {% for comment in article.comments.all %}
-    </br>
-
     <div class="card" >
       <div class="card-body">
         <strong>{{ comment.user }}</strong> -
@@ -54,5 +52,5 @@
   {% empty %}
     There are no article entries yet.
   {% endfor %}
-
+<br>
 {% endblock content %}
