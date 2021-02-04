@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load static %}
 
 <!doctype html>
 <html lang="en">
@@ -9,11 +10,12 @@
   <title>Blog tracker</title>
 
   {% bootstrap_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'new_sites/style.css' %}">
   {% bootstrap_javascript jquery='full' %}
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark mb-2">
 
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'new_sites:index' %}">Home</a>
