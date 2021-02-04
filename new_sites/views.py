@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import Topic, Entry, Article, Comment
+from .models import Topic, Entry, Article
 from .forms import TopicForm, EntryForm, CommentForm
 
 
@@ -26,7 +26,7 @@ def topics(request):
 
 @login_required
 def topic(request, topic_id):
-    """Show a single topic and all its entries."""
+    """Show a single topic and all it's entries."""
     topic = Topic.objects.get(id=topic_id)
     # Make sure the topic belongs to the current user.
     if topic.owner != request.user:
@@ -101,7 +101,7 @@ def edit_entry(request, entry_id):
 
 @login_required
 def delete_entry(request, entry_id):
-    """Edit an existing entry."""
+    """Delete an existing entry."""
     entry = Entry.objects.get(id=entry_id)
     entry.delete()
     topic = entry.topic
@@ -113,7 +113,7 @@ def delete_entry(request, entry_id):
 
 
 def success(request):
-    """Basic information about this site."""
+    """Success information about sending an email to site manager."""
     return render(request, 'new_sites/success.html')
 
 
@@ -133,6 +133,7 @@ def article(request, article_id):
 
 
 def add_comment(request, article_id):
+    """Show a single comment - only on specific article page."""
     article = get_object_or_404(Article, id=article_id)
     if request.method == "POST":
         form = CommentForm(request.POST)

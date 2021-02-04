@@ -39,7 +39,7 @@ urlpatterns = [
     # Page for editing an entry.
     path('edit_entry/<int:entry_id>/', views.edit_entry, name='edit_entry'),
 
-    # Show all success site.
+    # Show email sent success site.
     path('success/', views.success, name='success'),
 
     # Page for editing an entry.

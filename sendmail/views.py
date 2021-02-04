@@ -5,6 +5,7 @@ from django.urls import reverse
 from .forms import ContactForm
 
 def contactView(request):
+    """Contact view for sending an email to website manager."""
     if request.method == 'GET':
         form = ContactForm()
     else:
@@ -21,5 +22,5 @@ def contactView(request):
     return render(request, "email.html", {'form': form})
 
 def success(request):
-    """Basic information about this site."""
+    """Information for the user that, the mail has been send."""
     return render(request, 'sendmail/success.html')

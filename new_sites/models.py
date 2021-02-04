@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 
 
 class Topic(models.Model):
-    """A topic the user is learning about"""
+    """Topic created by a user."""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -15,7 +15,7 @@ class Topic(models.Model):
 
 
 class Entry(models.Model):
-    """Something specific learned about a topic"""
+    """Specific topic entry."""
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     text = RichTextField(blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -29,7 +29,7 @@ class Entry(models.Model):
 
 
 class Article(models.Model):
-    """A topic the user is learning about"""
+    """An article the user is writing about."""
     text = models.CharField(max_length=200)
     date_added = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -40,7 +40,7 @@ class Article(models.Model):
 
 
 class ArticleEntry(models.Model):
-    """Something specific learned about a topic"""
+    """Specific entry for each article."""
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     text = RichTextField(blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -54,6 +54,7 @@ class ArticleEntry(models.Model):
 
 
 class Comment(models.Model):
+    """Comment crated by te user."""
     article = models.ForeignKey(Article, related_name="comments", on_delete=models.CASCADE)
     user = models.CharField(max_length=255)
     comment_text = models.TextField()
